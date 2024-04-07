@@ -7,25 +7,35 @@ import qzone2 from "../../assets/qZone2.png";
 import qzone3 from "../../assets/qZone3.png";
 import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
-
+import { FaXTwitter } from "react-icons/fa6";
 const NavRights = () => {
-  const {googleSignIn,githubLogin}=useContext(AuthContext);
+  const {googleSignIn,githubLogin,twitterLogin,facebookLogin}=useContext(AuthContext);
   const handleGoogleLogin=()=>{
     googleSignIn()
     .then()
       .catch(error=>console.log(error))
    
-  }
+  };
   const handleGithubLogin=()=>{
     githubLogin()
     .then()
       .catch(error=>console.log(error))
+  };
+  const handleTwitterLogin=()=>{
+  twitterLogin()
+  .then()
+  .catch(error=>console.log(error))
+  }
+  const handleFacebookLogin=()=>{
+    facebookLogin()
+  .then()
+  .catch(error=>console.log(error))
   }
   return (
     <div>
       <h1 className="font-bold mb-6 ml-2">Login With</h1>
       <div className="space-y-2">
-        <button onClick={handleGoogleLogin} className="w-full border-2 border-blue-300 text-blue-400 py-2 flex gap-2  items-center justify-center">
+        <button onClick={handleGoogleLogin} className="w-full border-2 border-green-600 text-green-700 py-2 flex gap-2  items-center justify-center">
           {" "}
           <span>
             <FaGoogle />
@@ -39,6 +49,21 @@ const NavRights = () => {
           </span>
           Login With Github
         </button>
+        <button onClick={handleTwitterLogin}  className="w-full border-2 border-blue-300 py-2 flex gap-2  items-center justify-center text-blue-400">
+          {" "}
+          <span>
+          <FaXTwitter />
+          </span>
+          Login With Twitter
+        </button>
+        <button onClick={handleFacebookLogin}  className="w-full border-2 border-blue-600 py-2 flex gap-2  items-center justify-center text-blue-700">
+          {" "}
+          <span>
+          <FaFacebookF />
+          </span>
+          Login With Facebook
+        </button>
+       
       </div>
       <div className="mt-6">
         <h1 className="font-bold mb-6 ml-2">Find Us On</h1>

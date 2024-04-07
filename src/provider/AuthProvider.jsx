@@ -1,8 +1,10 @@
 import { createContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import {
+  FacebookAuthProvider,
   GithubAuthProvider,
   GoogleAuthProvider,
+  TwitterAuthProvider,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   sendPasswordResetEmail,
@@ -15,7 +17,8 @@ import auth from "../firebase/firebase.config";
 export const AuthContext = createContext(null);
 const googleProvider = new GoogleAuthProvider();
 const githubProvider = new GithubAuthProvider();
-
+const twitterProvider=new TwitterAuthProvider();
+const facebookProvider=new FacebookAuthProvider();
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -40,6 +43,12 @@ const AuthProvider = ({ children }) => {
   };
   const githubLogin = () => {
     return signInWithPopup(auth, githubProvider);
+  };
+  const twitterLogin = () => {
+    return signInWithPopup(auth, twitterProvider);
+  };
+  const facebookLogin = () => {
+    return signInWithPopup(auth, facebookProvider);
   };
   const passwordReset = (email) => {
     return sendPasswordResetEmail(auth, email);
@@ -67,7 +76,9 @@ const AuthProvider = ({ children }) => {
     photo,
     githubLogin,
     passwordReset,
-    updatePassWord
+    updatePassWord,
+    twitterLogin,
+    facebookLogin
   };
 
   return (
